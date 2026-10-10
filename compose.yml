@@ -4,16 +4,29 @@ services:
     container_name: windows
     environment:
       VERSION: "11"
+      LANGUAGE: "Spanish"
+      REGION: "es-CR"
+      KEYBOARD: "es"
+      CPU_CORES: "4"
+      RAM_SIZE: "16G"
+      DISK_SIZE: "64G"
+      AUDIO: "Y"
+      DISK2_SIZE: "32G"
+      USERNAME: "André"
+      PASSWORD: "Sao"
     devices:
       - /dev/kvm
       - /dev/net/tun
     cap_add:
       - NET_ADMIN
+    volumes:
+      - ./windows:/storage
+      - ./compartido:/shared
+      - ./disco2:/storage2
     ports:
       - 8006:8006
       - 3389:3389/tcp
       - 3389:3389/udp
-    volumes:
-      - ./windows:/storage
     restart: always
     stop_grace_period: 2m
+    
